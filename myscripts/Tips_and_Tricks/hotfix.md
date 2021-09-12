@@ -1,11 +1,15 @@
-- snapd proxy fail.
+# TIPS and TRICKS was collected
 
-error is :
+## snap error when using proxy
+
+- error is :
+
 ```bash
     error: cannot install "core": Post
     https://api.snapcraft.io/v2/snaps/refresh: Method Not Allowed
 ```
-fix :
+
+- fix :
 
 comment 2 line:
 `#Enviroment="HTTP_PROXY=http://archive.ubuntu.com/ubuntu"`
@@ -13,7 +17,8 @@ comment 2 line:
 
 in file `/etc/systemd/system/snapd.service.d/snap_proxy.conf`
 
-then run 
+- then run :
+
 ```bash
     systemctl daemon-reload
     systemctl restart snapd
