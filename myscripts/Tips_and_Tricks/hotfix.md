@@ -35,27 +35,31 @@
         TCP_OUT = “20,21,22,25,26,37,43,53,80,110,113,443,465,873,2087”
     ```
 
-## snap error when using proxy
+  - Restart csf
 
-- error is :
+    ```bash
+        csf -r
+    ```
+  
+## Snap error when using proxy
+
+- Error is :
 
 ```bash
     error: cannot install "core": Post
     https://api.snapcraft.io/v2/snaps/refresh: Method Not Allowed
 ```
 
-- fix :
+- Fix : comment 2 line in file `/etc/systemd/system/snapd.service.d/snap_proxy.conf`.
 
-comment 2 line:
-`#Enviroment="HTTP_PROXY=http://archive.ubuntu.com/ubuntu"`
-`#Enviroment="HTTPS_PROXY=https://archive.ubuntu.com/ubuntu"`
+```bash
+    #Enviroment="HTTP_PROXY=http://archive.ubuntu.com/ubuntu"
+    #Enviroment="HTTPS_PROXY=https://archive.ubuntu.com/ubuntu"
+```
 
-in file `/etc/systemd/system/snapd.service.d/snap_proxy.conf`
-
-- then run :
+- Run to reload snap service:
 
 ```bash
     systemctl daemon-reload
     systemctl restart snapd
 ```
-
