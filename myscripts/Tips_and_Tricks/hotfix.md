@@ -63,3 +63,30 @@
     systemctl daemon-reload
     systemctl restart snapd
 ```
+
+## ERROR Failed to compile PHP extension on Centos
+
+```bash
+    make: *** [src/core/ext/filters/client_channel/lb_policy/grpclb/grpclb.lo] Error 1
+    ERROR: `make' failed
+```
+
+- Fist you should check GCC version, gRPC require GCC version 4.9+, if GCC version in your OS is 4.8 you should upgrade it.
+
+- On Centos OS.
+
+```bash
+    sudo yum install centos-release-scl
+    sudo yum install devtoolset-7-gcc*
+    scl enable devtoolset-7 bash
+    pecl install grcp
+```
+
+- On Ubuntu
+
+```bash
+    sudo apt update
+    sudo apt install build-essential
+    sudo apt-get install manpages-dev
+    pecl install grcp
+```
